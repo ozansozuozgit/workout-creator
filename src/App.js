@@ -1,14 +1,13 @@
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import HomeScreen from './screens/HomeScreen';
-import WorkoutCreatorScreen from './screens/WorkoutCreatorScreen';
+import Home from './components/screens/Home';
+import WorkoutCreator from './components/screens/WorkoutCreator';
 
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/workout" component={WorkoutCreatorScreen} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/workout" component={WorkoutCreator} />
       </Switch>
     </div>
   );
