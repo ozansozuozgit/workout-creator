@@ -7,7 +7,6 @@ import WorkoutCreator from './components/screens/WorkoutCreator';
 import Login from './components/screens/Login';
 import Signup from './components/screens/Signup';
 import { auth } from './firebase';
-
 import PrivateRoute from './components/screens/PrivateRoute';
 
 function App() {
