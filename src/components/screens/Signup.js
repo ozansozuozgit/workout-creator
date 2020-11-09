@@ -5,11 +5,13 @@ import isEmail from 'validator/lib/isEmail';
 import { useDispatch } from 'react-redux';
 import { auth } from '../../firebase';
 import { setUser } from '../../features/userSlice';
+import { Link, useHistory } from 'react-router-dom';
 
 function Signup() {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   async function onSubmit(data) {
     try {
@@ -22,6 +24,7 @@ function Signup() {
           uid: auth.currentUser.uid,
         })
       );
+      history.push('/');
     } catch (error) {
       console.log(error.code);
       console.log(error.message);
@@ -65,6 +68,9 @@ function Signup() {
           )}
           <input type="submit" disabled={loading} />
         </form>
+        <p>
+          Already have an account? <Link to="/login">Log In</Link>
+        </p>
       </div>
     </div>
   );
