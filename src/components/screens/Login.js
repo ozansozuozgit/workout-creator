@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './Signup.module.css';
 import isEmail from 'validator/lib/isEmail';
-import { auth } from '../../firebase';
 import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { auth } from '../../firebase';
+import { selectUser } from '../../features/userSlice';
 
 function Login() {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
+  const user = useSelector(selectUser);
   const history = useHistory();
 
-  async function onSubmit(data) {
-    try {
-      // setLoading(true);
-      await auth.signInWithEmailAndPassword(data.email, data.password);
-      console.log('Sign in successful.');
+  useEffect(() => {
+    if (user) history.push('/');
+  }, [user, history]);
 
-      history.push('/');
-    } catch (error) {
-      console.log(error.code);
-      console.log(error.message);
-    }
-    // setLoading(false);
+  function onSubmit(data) {
+    auth
+      .signInWithEmailAndPassword(data.email, data.password)
+      .catch((error) => alert(error.message));
+    console.log(user);
   }
 
   return (
