@@ -1,5 +1,5 @@
 import { Route, Redirect } from 'react-router-dom';
-import { selectUser } from '../../features/userSlice';
+import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 
 function PrivateRoute({ component: Component, ...rest }) {

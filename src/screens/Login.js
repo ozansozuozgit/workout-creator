@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import styles from './Signup.module.css';
 import isEmail from 'validator/lib/isEmail';
 import { Link, useHistory } from 'react-router-dom';
-import { selectUser } from '../../features/userSlice';
 import { useSelector } from 'react-redux';
-import { auth } from '../../firebase';
+import { auth } from '../firebase';
+import { selectUser } from '../features/userSlice';
 
-function Signup() {
+function Login() {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
   const user = useSelector(selectUser);
@@ -16,10 +16,10 @@ function Signup() {
   useEffect(() => {
     if (user) history.push('/');
   }, [user, history]);
-  
+
   function onSubmit(data) {
     auth
-      .createUserWithEmailAndPassword(data.email, data.password)
+      .signInWithEmailAndPassword(data.email, data.password)
       .catch((error) => alert(error.message));
     console.log(user);
   }
@@ -27,7 +27,7 @@ function Signup() {
   return (
     <div className={styles.container}>
       <div className={styles.form_container}>
-        <h1>Signup</h1>
+        <h1>Login</h1>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           {errors.username && <p>Please enter a username</p>}
           <label>Email</label>
@@ -51,11 +51,11 @@ function Signup() {
           <input type="submit" disabled={loading} />
         </form>
         <p>
-          Already have an account? <Link to="/login">Log In</Link>
+          Need an account? <Link to="/signup">Sign Up</Link>
         </p>
       </div>
     </div>
   );
 }
 
-export default Signup;
+export default Login;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './WorkoutCreator.module.css';
-import db from '../../firebase';
+import db from '../firebase';
 
 function WorkoutCreator() {
   const [exerciseList, setExerciseList] = useState([]);

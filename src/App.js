@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
 import { Switch, Route } from 'react-router-dom';
-import Home from './components/screens/Home';
-import WorkoutCreator from './components/screens/WorkoutCreator';
-import Login from './components/screens/Login';
-import Signup from './components/screens/Signup';
+import Home from './screens/Home';
+import WorkoutCreator from './screens/WorkoutCreator';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
 import { auth } from './firebase';
-import PrivateRoute from './components/screens/PrivateRoute';
-import Loader from './components/layout/Loader';
+import PrivateRoute from './screens/PrivateRoute';
+import Loader from './components/Loader';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,21 +17,18 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // the user is logged in
-        console.log('user is ', authUser);
         dispatch(
           login({
-            uid: authUser.uid,
             email: authUser.email,
           })
         );
       } else {
-        //the user is logged out
         dispatch(logout());
       }
       setLoading(false);
     });
   }, [dispatch]);
+
   return (
     <div className="App">
       {loading ? (
@@ -43,7 +40,7 @@ function App() {
           <Route eact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
         </Switch>
-      )}{' '}
+      )}
     </div>
   );
 }

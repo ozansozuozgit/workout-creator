@@ -4,7 +4,6 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     user: null,
-    loading: true,
   },
   reducers: {
     login: (state, action) => {

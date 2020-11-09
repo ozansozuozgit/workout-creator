@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './Home.module.css';
-import { auth } from '../../firebase';
+import { auth } from '../firebase';
 import { Link } from 'react-router-dom';
 
 function Home() {
