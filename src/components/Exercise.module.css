@@ -1,0 +1,14 @@
+.container {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.container:hover {
+  cursor: pointer;
+}
+.container img {
+  width: 55%;
+}
