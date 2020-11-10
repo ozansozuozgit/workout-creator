@@ -33,7 +33,6 @@ function Login() {
           <label>Email</label>
           <input
             name="email"
-            defaultValue="test"
             ref={register({
               required: true,
               validate: (input) => isEmail(input),
