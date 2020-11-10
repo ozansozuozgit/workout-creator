@@ -15,14 +15,17 @@ function ExerciseList() {
         getMoreMessages();
       }
     });
-
     getMessages();
+    return () => {
+      //cleanup
+      current.removeEventListener('scroll', () => {});
+    };
   }, []);
 
   function getMessages() {
     let ref = db.collection('exercises');
     ref
-      .orderBy('name', 'desc')
+      .orderBy('average', 'desc')
       .limit(5)
       .get()
       .then((snapshots) => {
@@ -38,7 +41,7 @@ function ExerciseList() {
     let ref = db.collection('exercises');
     console.log('start', start);
     ref
-      .orderBy('name', 'desc')
+      .orderBy('average', 'desc')
       .startAt(start)
       .limit(5)
       .get()
