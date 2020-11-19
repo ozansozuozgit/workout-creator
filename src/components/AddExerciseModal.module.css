@@ -1,7 +1,27 @@
 .container {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.386);
-  }
-  
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.386);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 50%;
+  text-align: center;
+}
+
+.info_container img {
+  width: 200px;
+}
+
+.info_container input {
+  width: 30%;
+  display: block;
+  margin: auto;
+}
