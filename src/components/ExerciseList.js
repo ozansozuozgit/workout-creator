@@ -30,8 +30,6 @@ function ExerciseList() {
       .get()
       .then((snapshots) => {
         start = snapshots.docs[snapshots.docs.length - 1];
-        console.log(snapshots);
-        console.log(start);
         snapshots.forEach((exercise) => {
           setExerciseList((prevArray) => [...prevArray, exercise.data()]);
         });
@@ -39,7 +37,6 @@ function ExerciseList() {
   }
   function getMoreMessages() {
     let ref = db.collection('exercises');
-    console.log('start', start);
     ref
       .orderBy('average', 'desc')
       .startAt(start)
@@ -55,8 +52,8 @@ function ExerciseList() {
 
   return (
     <div className={styles.container} ref={myscroll}>
-      {exerciseList.map((exercise) => (
-        <Exercise exercise={exercise} />
+      {exerciseList.map((exercise, index) => (
+        <Exercise exercise={exercise} key={index} />
       ))}
     </div>
   );
