@@ -7,6 +7,7 @@ function ExerciseList() {
   const [exerciseList, setExerciseList] = useState([]);
   const myscroll = useRef();
   let start = null;
+  let endOfDocument = false;
 
   useEffect(() => {
     const { current } = myscroll;
@@ -36,22 +37,27 @@ function ExerciseList() {
       });
   }
   function getMoreMessages() {
-    let ref = db.collection('exercises');
-    ref
-      .orderBy('average', 'desc')
-      .startAt(start)
-      .limit(5)
-      .get()
-      .then((snapshots) => {
-        start = snapshots.docs[snapshots.docs.length - 2];
-        snapshots.forEach((exercise) => {
-          setExerciseList((prevArray) => [...prevArray, exercise.data()]);
+    if (!endOfDocument) {
+      let ref = db.collection('exercises');
+      ref
+        .orderBy('average', 'desc')
+        .startAfter(start)
+        .limit(10)
+        .get()
+        .then((snapshots) => {
+          start = snapshots.docs[snapshots.docs.length - 1];
+          if (!start) endOfDocument = true;
+          snapshots.forEach((exercise) => {
+            setExerciseList((prevArray) => [...prevArray, exercise.data()]);
+          });
         });
-      });
+    }
   }
 
   return (
     <div className={styles.container} ref={myscroll}>
+      <label htmlFor="abs"> Abs</label>
+      <input type="checkbox" name="abs" id="abs" />
       {exerciseList.map((exercise, index) => (
         <Exercise exercise={exercise} key={index} />
       ))}
