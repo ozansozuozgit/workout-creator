@@ -13,10 +13,20 @@ export const exerciseSlice = createSlice({
     setChosenExercises: (state, action) => {
       state.chosenExercises.push(action.payload);
     },
+    removeExercise: (state, action) => {
+      state.chosenExercises = state.chosenExercises.filter(
+        (exercise) => exercise.name !== action.payload
+      );
+    },
   },
 });
 
-export const { setExercise, setChosenExercises } = exerciseSlice.actions;
+export const {
+  setExercise,
+  setChosenExercises,
+  removeExercise,
+} = exerciseSlice.actions;
+
 export const selectExercise = (state) => state.exercise.exercise;
 export const selectChosenExercises = (state) => state.exercise.chosenExercises;
 
