@@ -3,6 +3,7 @@ import styles from './ExerciseList.module.css';
 import db from '../firebase';
 import Exercise from './Exercise';
 
+// TODO: Add Search functionality
 function ExerciseList() {
   const [exerciseList, setExerciseList] = useState([]);
   let endOfDocument = useRef(false);
@@ -10,8 +11,7 @@ function ExerciseList() {
 
   const selectScroll = useRef();
   const selectRef = useRef();
-
-  let search = '';
+  const searchText = useRef('');
 
   useEffect(() => {
     getExercises();
@@ -21,29 +21,47 @@ function ExerciseList() {
         getMoreExercises();
       }
     });
+
+    //cleanup
     return () => {
-      //cleanup
       current.removeEventListener('scroll', () => {});
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Delay typing in order to getExercises once rather than call it every typing
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      getExercises();
+    }, 500);
+
+    // if this effect run again, because `value` changed, we remove the previous timeout
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText.current]);
 
   function handleSearch(e) {
-    search = e.target.value;
-    getExercises(search);
+    searchText.current =
+      e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    endOfDocument.current = false;
+
+    setExerciseList([]);
   }
 
   function handleCategory() {
     endOfDocument.current = false;
+    setExerciseList([]);
     getExercises();
   }
 
   function getExercises() {
-    setExerciseList([]);
-
     let ref = null;
-    if (selectRef.current.value !== 'All') {
+    if (searchText.current) {
+      ref = db
+        .collection('exercises')
+        .where('name', '>=', searchText.current)
+        .where('name', '<=', searchText.current + '\uf8ff');
+    } else if (selectRef.current.value !== 'All') {
       ref = db
         .collection('exercises')
         .where('targetMuscle', '==', selectRef.current.value);
@@ -52,7 +70,7 @@ function ExerciseList() {
     }
 
     ref
-      .orderBy('average', 'desc')
+      .orderBy('name', 'asc')
       .limit(5)
       .get()
       .then((snapshots) => {
@@ -62,11 +80,16 @@ function ExerciseList() {
         });
       });
   }
-  
+
   function getMoreExercises() {
     if (!endOfDocument.current) {
       let ref = null;
-      if (selectRef.current.value !== 'All') {
+      if (searchText.current) {
+        ref = db
+          .collection('exercises')
+          .where('name', '>=', searchText.current)
+          .where('name', '<=', searchText.current + '\uf8ff');
+      } else if (selectRef.current.value !== 'All') {
         ref = db
           .collection('exercises')
           .where('targetMuscle', '==', selectRef.current.value);
@@ -74,7 +97,7 @@ function ExerciseList() {
         ref = db.collection('exercises');
       }
       ref
-        .orderBy('average', 'desc')
+        .orderBy('name', 'asc')
         .startAfter(start.current)
         .limit(5)
         .get()
@@ -92,7 +115,6 @@ function ExerciseList() {
 
   return (
     <div className={styles.container} ref={selectScroll}>
-      <label htmlFor="abs">Abs</label>
       <input
         type="text"
         name=""
@@ -118,7 +140,7 @@ function ExerciseList() {
         <option value="Calves">Calves</option>
         <option value="Triceps">Triceps</option>
         <option value="Traps">Traps</option>
-        <option value="Shoulders"></option>
+        <option value="Shoulders">Shoulders</option>
         <option value="Abdominals">Abdominals</option>
         <option value="Glutes">Glutes</option>
         <option value="Biceps">Biceps</option>
