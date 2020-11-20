@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import db from '../firebase';
 import { selectUser } from '../features/userSlice';
 import {
-  selectCurrentWorkoutID,
   clearCurrentWorkoutID,
   clearCurrentWorkoutTitle,
 } from '../features/workoutsSlice';
@@ -17,54 +16,60 @@ import MuscleCount from '../components/MuscleCount';
 function Home() {
   const [workouts, setWorkout] = useState([]);
   const user = useSelector(selectUser);
-  const currentWorkoutID = useSelector(selectCurrentWorkoutID);
   const dispatch = useDispatch();
   const [workedMuscles, setWorkedMuscles] = useState([]);
+  const allMuscles = [];
 
   useEffect(() => {
-    if (currentWorkoutID === '') {
-      db.collection('workouts')
-        .where('uid', '==', user.uid)
-        .get()
-        .then((snapshots) => {
-          const allMuscles = [];
+    getWorkouts();
 
-          snapshots.forEach((workout) => {
-            setWorkout((prevArray) => [
-              ...prevArray,
-              { ...workout.data(), id: workout.id },
-            ]);
-            workout.data().chosenExercises.forEach((exercise) => {
-              allMuscles.push({
-                targetMuscle: exercise.targetMuscle,
-                sets: exercise.sets,
-                reps: exercise.reps,
-              });
-            });
-            let counts = {};
-
-            allMuscles.forEach((el) => {
-              counts[el.targetMuscle] = counts[el.targetMuscle]
-                ? counts[el.targetMuscle] + 1
-                : 1;
-            });
-
-            let sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-            setWorkedMuscles(sorted);
-          });
-        });
-    }
-  }, [user, currentWorkoutID]);
-
-  useEffect(() => {
     dispatch(clearCurrentWorkoutID());
     dispatch(clearCurrentWorkoutTitle());
     dispatch(clearList());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function removeWorkout(id) {
-    setWorkout(workouts.filter((workout) => workout.id !== id));
+  function getWorkouts() {
+    setWorkout([]);
+    setWorkedMuscles([]);
+    db.collection('workouts')
+      .where('uid', '==', user.uid)
+      .get()
+      .then((snapshots) => {
+        snapshots.forEach((workout) => {
+          setWorkout((prevArray) => [
+            ...prevArray,
+            { ...workout.data(), id: workout.id },
+          ]);
+          getMuscleCount(workout);
+        });
+      });
+  }
+
+  function getMuscleCount(workout) {
+    workout.data().chosenExercises.forEach((exercise) => {
+      allMuscles.push({
+        targetMuscle: exercise.targetMuscle,
+        sets: exercise.sets,
+        reps: exercise.reps,
+      });
+    });
+    let counts = {};
+
+    allMuscles.forEach((el) => {
+      counts[el.targetMuscle] = counts[el.targetMuscle]
+        ? counts[el.targetMuscle] + 1
+        : 1;
+    });
+
+    let sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    setWorkedMuscles(sorted);
+  }
+
+  function removeWorkout() {
+    setTimeout(() => {
+      getWorkouts();
+    }, 700);
   }
 
   return (
@@ -80,9 +85,11 @@ function Home() {
           />
         ))}
       {workedMuscles &&
-        workedMuscles.map((muscle) => <MuscleCount muscle={muscle} />)}
+        workedMuscles.map((muscle, index) => (
+          <MuscleCount key={index} muscle={muscle} />
+        ))}
       <button onClick={() => auth.signOut()}>Sign out</button>
-      <Link to="/workout">go to workout</Link>
+      <Link to="/workout">create workout</Link>
     </div>
   );
 }
