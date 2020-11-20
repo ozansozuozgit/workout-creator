@@ -17,9 +17,12 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
+        console.log(authUser);
+
         dispatch(
           login({
             email: authUser.email,
+            uid: authUser.uid,
           })
         );
       } else {
