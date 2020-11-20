@@ -13,6 +13,9 @@ export const exerciseSlice = createSlice({
     setChosenExercises: (state, action) => {
       state.chosenExercises.push(action.payload);
     },
+    setWorkoutExercises: (state, action) => {
+      state.chosenExercises = action.payload;
+    },
     removeExercise: (state, action) => {
       state.chosenExercises = state.chosenExercises.filter(
         (exercise) => exercise.name !== action.payload
@@ -30,6 +33,9 @@ export const exerciseSlice = createSlice({
       );
       state.chosenExercises[exerciseIndex].reps = action.payload.reps;
     },
+    clearList: (state) => {
+      state.chosenExercises = [];
+    },
   },
 });
 
@@ -38,7 +44,9 @@ export const {
   setChosenExercises,
   removeExercise,
   updateSets,
-  updateReps
+  updateReps,
+  clearList,
+  setWorkoutExercises,
 } = exerciseSlice.actions;
 
 export const selectExercise = (state) => state.exercise.exercise;
