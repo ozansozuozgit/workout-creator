@@ -32,7 +32,7 @@ function AddExerciseModal({ exercise }) {
         <div className={styles.sets_reps_container}>
           <label htmlFor="sets">Sets</label>
           <input
-            type="text"
+            type="number"
             name="sets"
             id="sets"
             onChange={handleInput}
@@ -40,7 +40,7 @@ function AddExerciseModal({ exercise }) {
           />
           <label htmlFor="reps">Reps</label>
           <input
-            type="text"
+            type="number"
             name="reps"
             id="reps"
             onChange={handleInput}

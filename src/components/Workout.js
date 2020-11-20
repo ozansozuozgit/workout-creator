@@ -27,6 +27,7 @@ function Workout() {
     if (currentWorkoutTitle) {
       setTitle(currentWorkoutTitle);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleInput(e) {
@@ -53,6 +54,7 @@ function Workout() {
 
   return (
     <div className={styles.container}>
+      <button onClick={() => history.push('/')}>Go Home</button>
       <input
         type="text"
         placeholder="Enter Workout Name"

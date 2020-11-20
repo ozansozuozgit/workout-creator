@@ -30,14 +30,14 @@ function WorkoutExercise({ exercise }) {
         <div className={styles.sets_reps}>
           <label>Sets:</label>
           <input
-            type="text"
+            type="number"
             value={exercise.sets}
             name="sets"
             onChange={handleUpdate}
           />
           <label>Reps:</label>
           <input
-            type="text"
+            type="number"
             value={exercise.reps}
             name="reps"
             onChange={handleUpdate}

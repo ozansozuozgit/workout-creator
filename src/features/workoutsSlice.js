@@ -17,7 +17,7 @@ export const workoutsSlice = createSlice({
       state.currentWorkoutID = '';
     },
     clearCurrentWorkoutTitle: (state) => {
-      state.currentWorkoutID = '';
+      state.currentWorkoutTitle = '';
     },
   },
 });
