@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import styles from './Workout.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectChosenExercises } from '../features/exerciseSlice';
+import { setWorkout } from '../features/workoutsSlice';
 import WorkoutExercise from './WorkoutExercise';
+import { useHistory } from 'react-router-dom';
 
 function Workout() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const chosenExercises = useSelector(selectChosenExercises);
-  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
 
   function handleInput(e) {
-    setText(e.value);
+    setTitle(e.target.value);
+  }
+
+  function saveWorkout() {
+    dispatch(setWorkout({ title, ...chosenExercises }));
+    history.push('/');
   }
 
   return (
@@ -18,13 +27,13 @@ function Workout() {
         type="text"
         placeholder="Enter Workout Name"
         onChange={handleInput}
-        value={text}
+        value={title}
       />
       {chosenExercises &&
-        chosenExercises.map((exercise) => (
-          <WorkoutExercise exercise={exercise} />
+        chosenExercises.map((exercise, index) => (
+          <WorkoutExercise exercise={exercise} key={index} />
         ))}
-      <button>Save Workout</button>
+      <button onClick={saveWorkout}>Save Workout</button>
     </div>
   );
 }
