@@ -18,6 +18,18 @@ export const exerciseSlice = createSlice({
         (exercise) => exercise.name !== action.payload
       );
     },
+    updateSets: (state, action) => {
+      let exerciseIndex = state.chosenExercises.findIndex(
+        (exercise) => exercise.name === action.payload.name
+      );
+      state.chosenExercises[exerciseIndex].sets = action.payload.sets;
+    },
+    updateReps: (state, action) => {
+      let exerciseIndex = state.chosenExercises.findIndex(
+        (exercise) => exercise.name === action.payload.name
+      );
+      state.chosenExercises[exerciseIndex].reps = action.payload.reps;
+    },
   },
 });
 
@@ -25,6 +37,8 @@ export const {
   setExercise,
   setChosenExercises,
   removeExercise,
+  updateSets,
+  updateReps
 } = exerciseSlice.actions;
 
 export const selectExercise = (state) => state.exercise.exercise;
