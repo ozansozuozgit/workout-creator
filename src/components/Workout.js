@@ -1,23 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Workout.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectChosenExercises } from '../features/exerciseSlice';
-import { setWorkout } from '../features/workoutsSlice';
+import { selectChosenExercises, clearList } from '../features/exerciseSlice';
+import {
+  clearCurrentWorkoutID,
+  selectCurrentWorkoutID,
+  selectCurrentWorkoutTitle,
+  clearCurrentWorkoutTitle,
+} from '../features/workoutsSlice';
+import { selectUser } from '../features/userSlice';
 import WorkoutExercise from './WorkoutExercise';
 import { useHistory } from 'react-router-dom';
+import db from '../firebase';
 
 function Workout() {
   const dispatch = useDispatch();
   const history = useHistory();
   const chosenExercises = useSelector(selectChosenExercises);
+  const currentWorkoutID = useSelector(selectCurrentWorkoutID);
+  const currentWorkoutTitle = useSelector(selectCurrentWorkoutTitle);
+
+  const user = useSelector(selectUser);
   const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    if (currentWorkoutTitle) {
+      setTitle(currentWorkoutTitle);
+    }
+  }, []);
 
   function handleInput(e) {
     setTitle(e.target.value);
   }
 
   function saveWorkout() {
-    dispatch(setWorkout({ title, ...chosenExercises }));
+    if (currentWorkoutID === '') {
+      db.collection('workouts')
+        .doc()
+        .set({ title, uid: user.uid, chosenExercises })
+        .then(console.log('Workout passed'));
+    } else {
+      db.collection('workouts')
+        .doc(currentWorkoutID)
+        .update({ title, uid: user.uid, chosenExercises })
+        .then(console.log('Workout passed'));
+    }
+    dispatch(clearList());
+    dispatch(clearCurrentWorkoutID());
+    dispatch(clearCurrentWorkoutTitle());
     history.push('/');
   }
 
