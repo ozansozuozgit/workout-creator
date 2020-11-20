@@ -12,12 +12,14 @@ import {
 import { clearList } from '../features/exerciseSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import WorkoutCard from '../components/WorkoutCard';
+import MuscleCount from '../components/MuscleCount';
 
 function Home() {
   const [workouts, setWorkout] = useState([]);
   const user = useSelector(selectUser);
   const currentWorkoutID = useSelector(selectCurrentWorkoutID);
   const dispatch = useDispatch();
+  const [workedMuscles, setWorkedMuscles] = useState([]);
 
   useEffect(() => {
     if (currentWorkoutID === '') {
@@ -25,11 +27,30 @@ function Home() {
         .where('uid', '==', user.uid)
         .get()
         .then((snapshots) => {
+          const allMuscles = [];
+
           snapshots.forEach((workout) => {
             setWorkout((prevArray) => [
               ...prevArray,
               { ...workout.data(), id: workout.id },
             ]);
+            workout.data().chosenExercises.forEach((exercise) => {
+              allMuscles.push({
+                targetMuscle: exercise.targetMuscle,
+                sets: exercise.sets,
+                reps: exercise.reps,
+              });
+            });
+            let counts = {};
+
+            allMuscles.forEach((el) => {
+              counts[el.targetMuscle] = counts[el.targetMuscle]
+                ? counts[el.targetMuscle] + 1
+                : 1;
+            });
+
+            let sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+            setWorkedMuscles(sorted);
           });
         });
     }
@@ -39,7 +60,7 @@ function Home() {
     dispatch(clearCurrentWorkoutID());
     dispatch(clearCurrentWorkoutTitle());
     dispatch(clearList());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function removeWorkout(id) {
@@ -58,6 +79,8 @@ function Home() {
             removeWorkout={removeWorkout}
           />
         ))}
+      {workedMuscles &&
+        workedMuscles.map((muscle) => <MuscleCount muscle={muscle} />)}
       <button onClick={() => auth.signOut()}>Sign out</button>
       <Link to="/workout">go to workout</Link>
     </div>
