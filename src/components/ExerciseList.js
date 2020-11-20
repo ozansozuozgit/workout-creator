@@ -14,7 +14,7 @@ function ExerciseList() {
   const searchText = useRef('');
 
   useEffect(() => {
-    getExercises();
+    // getExercises();
     const { current } = selectScroll;
     current.addEventListener('scroll', () => {
       if (current.scrollTop + current.clientHeight >= current.scrollHeight) {
