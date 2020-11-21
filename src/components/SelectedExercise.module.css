@@ -1,5 +1,6 @@
 .container {
-  border: 1px solid black;
+  border: 2px solid #006494;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -9,6 +10,7 @@
 }
 .container > h4 {
   text-align: center;
+  color: #13293d;
 }
 
 .container > img {

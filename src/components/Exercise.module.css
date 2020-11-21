@@ -1,11 +1,14 @@
 .container {
-  border: 1px solid black;
+  border-bottom: 2px solid #006494;
+  border-left: 2px solid #006494;
+  border-right: 3px solid #006494;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+
 .container:hover {
   cursor: pointer;
 }
