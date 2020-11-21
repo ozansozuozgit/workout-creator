@@ -6,7 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 22;
 }
+
 
 .info_container {
   display: flex;

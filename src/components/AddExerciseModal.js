@@ -52,7 +52,7 @@ function AddExerciseModal({ exercise }) {
             placeholder="REPS"
           />
         </div>
-        <button onClick={handleClick}>Close</button>
+        <button onClick={handleClick}>Add</button>
       </div>
     </div>
   );
