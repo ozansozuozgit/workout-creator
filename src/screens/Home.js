@@ -19,6 +19,7 @@ function Home() {
   const dispatch = useDispatch();
   const [workedMuscles, setWorkedMuscles] = useState([]);
   const allMuscles = [];
+  const [sum, setSum] = useState(0);
 
   useEffect(() => {
     getWorkouts();
@@ -61,9 +62,18 @@ function Home() {
         ? counts[el.targetMuscle] + 1
         : 1;
     });
-
     let sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
     setWorkedMuscles(sorted);
+    getTotal(sorted);
+  }
+
+  function getTotal(sorted) {
+    let total = 0;
+    for (let i = 0; i < sorted.length; i++) {
+      total += sorted[i][1];
+      setSum(sum + sorted[i][1]);
+    }
+    setSum(total);
   }
 
   function removeWorkout() {
@@ -74,13 +84,15 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <Navbar />
+      <Navbar user={user} />
 
       {workouts && (
         <WorkoutList workouts={workouts} removeWorkout={removeWorkout} />
       )}
 
-      {workedMuscles && <MuscleCountList workedMuscles={workedMuscles} />}
+      {workedMuscles && (
+        <MuscleCountList workedMuscles={workedMuscles} sum={sum} />
+      )}
     </div>
   );
 }

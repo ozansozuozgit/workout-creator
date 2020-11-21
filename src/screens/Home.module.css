@@ -1,13 +1,10 @@
 .container {
   height: 100vh;
-  color: #ffffff;
+  color: #0b090a;
   display: flex;
   flex-direction: column;
 }
 
 .container h2 {
   margin: 0;
-}
-.home_nav {
-  flex: 0.1;
 }
