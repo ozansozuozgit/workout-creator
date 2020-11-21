@@ -8,7 +8,11 @@ function AddExerciseModal({ exercise }) {
   const [sets, setSets] = useState(1);
   const [reps, setReps] = useState(1);
 
-  function handleClick() {
+  function handleAddExercise() {
+    if (sets <= '0' || reps <= '0') {
+      alert('Enter more than 0 sets or reps');
+      return;
+    }
     let newExercise = { ...exercise };
     newExercise.sets = sets;
     newExercise.reps = reps;
@@ -52,7 +56,7 @@ function AddExerciseModal({ exercise }) {
             placeholder="REPS"
           />
         </div>
-        <button onClick={handleClick}>Add</button>
+        <button onClick={handleAddExercise}>Add</button>
       </div>
     </div>
   );

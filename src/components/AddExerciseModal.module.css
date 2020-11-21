@@ -9,7 +9,6 @@
   z-index: 22;
 }
 
-
 .info_container {
   display: flex;
   justify-content: space-between;
@@ -26,4 +25,15 @@
   width: 30%;
   display: block;
   margin: auto;
+}
+/* Chrome, Safari, Edge, Opera */
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.container input[type='number'] {
+  -moz-appearance: textfield;
 }
