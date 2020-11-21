@@ -68,7 +68,6 @@ function Workout() {
         />
         <button onClick={saveWorkout}>Save Workout</button>
       </div>
-      <hr />
       <div className={styles.chosen_exercise_container}>
         {chosenExercises &&
           chosenExercises.map((exercise, index) => (
