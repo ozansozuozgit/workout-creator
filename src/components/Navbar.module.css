@@ -5,13 +5,10 @@
   align-items: center;
   color: #247ba0;
 }
-.container > button {
-  border: none;
-}
-
 .container > a,
 .container > button,
 .container > h2 {
+  border: none;
   color: #1b98e0;
   text-decoration: none;
   font-size: 20px;

@@ -58,18 +58,23 @@ function Workout() {
 
   return (
     <div className={styles.container}>
-      <button onClick={() => history.push('/')}>Go Home</button>
-      <input
-        type="text"
-        placeholder="Enter Workout Name"
-        onChange={handleInput}
-        value={title}
-      />
-      {chosenExercises &&
-        chosenExercises.map((exercise, index) => (
-          <SelectedExercise exercise={exercise} key={index} />
-        ))}
-      <button onClick={saveWorkout}>Save Workout</button>
+      <div className={styles.navbar}>
+        <button onClick={() => history.push('/')}>Go Home</button>
+        <input
+          type="text"
+          placeholder="Enter Workout Name"
+          onChange={handleInput}
+          value={title}
+        />
+        <button onClick={saveWorkout}>Save Workout</button>
+      </div>
+      <hr />
+      <div className={styles.chosen_exercise_container}>
+        {chosenExercises &&
+          chosenExercises.map((exercise, index) => (
+            <SelectedExercise exercise={exercise} key={index} />
+          ))}
+      </div>
     </div>
   );
 }

@@ -9,8 +9,9 @@
 .container:hover {
   cursor: pointer;
 }
-.container img {
-  width: 55%;
+.container > h1 {
+  font-size: 26px;
 }
-
-
+.container img {
+  width: 50%;
+}

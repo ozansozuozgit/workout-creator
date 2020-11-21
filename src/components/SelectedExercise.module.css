@@ -1,16 +1,17 @@
 .container {
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-}
-
-.exerciseInfo {
-  display: flex;
   justify-content: space-evenly;
   align-items: center;
+  position: relative;
+  height: 240px;
+}
+.container > h4 {
+  text-align: center;
 }
 
-.exerciseInfo > img {
+.container > img {
   width: 100px;
   border-radius: 50%;
 }
@@ -24,4 +25,47 @@
   width: 25px;
   margin-left: 10px;
   margin: 0 10px;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  opacity: 0.3;
+  border: none;
+  background: none;
+}
+.close:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 24px;
+  width: 2px;
+  top: 5px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.container input[type='number'] {
+  -moz-appearance: textfield;
 }

@@ -1,5 +1,5 @@
 .container {
-  flex: 0.32;
+  flex: 0.25;
   overflow: auto;
   height: 100vh;
 }

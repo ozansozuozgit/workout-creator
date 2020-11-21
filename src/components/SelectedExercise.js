@@ -24,27 +24,25 @@ function WorkoutExercise({ exercise }) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.exerciseInfo}>
-        <img src={exercise.imageURL} alt="" />
-        <p>{exercise.name}</p>
-        <div className={styles.sets_reps}>
-          <label>Sets:</label>
-          <input
-            type="number"
-            value={exercise.sets}
-            name="sets"
-            onChange={handleUpdate}
-          />
-          <label>Reps:</label>
-          <input
-            type="number"
-            value={exercise.reps}
-            name="reps"
-            onChange={handleUpdate}
-          />
-        </div>
-        <button onClick={handleRemove}>Remove</button>
+      <h4>{exercise.name}</h4>
+      <img src={exercise.imageURL} alt="" />
+      <div className={styles.sets_reps}>
+        <label>Sets:</label>
+        <input
+          type="number"
+          value={exercise.sets}
+          name="sets"
+          onChange={handleUpdate}
+        />
+        <label>Reps:</label>
+        <input
+          type="number"
+          value={exercise.reps}
+          name="reps"
+          onChange={handleUpdate}
+        />
       </div>
+      <button className={styles.close} onClick={handleRemove}></button>
     </div>
   );
 }
