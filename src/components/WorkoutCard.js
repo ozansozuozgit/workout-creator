@@ -31,33 +31,8 @@ function WorkoutCard({ workout, removeWorkout }) {
     removeWorkout();
   }
 
-  const containerVariants = {
-    hidden: {
-      opacity: 0,
-      y: '-100vw',
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        duration: 1,
-        bounce: 0.5,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: '-100vw',
-    },
-  };
-
   return (
     <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
       whileHover={{ scale: 1.1 }}
       transition={{ ease: 'backInOut' }}
       className={styles.container}
@@ -65,7 +40,7 @@ function WorkoutCard({ workout, removeWorkout }) {
       <div onClick={modifyWorkout}>
         <h2>{workout.title}</h2>
       </div>
-      <button onClick={handleDelete}>Delete</button>
+      <button className={styles.close} onClick={handleDelete}></button>
     </motion.div>
   );
 }
