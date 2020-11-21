@@ -9,6 +9,7 @@ import Signup from './screens/Signup';
 import { auth } from './firebase';
 import PrivateRoute from './screens/PrivateRoute';
 import Loader from './components/Loader';
+import styles from './App.module.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className={styles.container}>
       {loading ? (
         <Loader />
       ) : (
