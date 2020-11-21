@@ -22,9 +22,14 @@ function AddExerciseModal({ exercise }) {
     } else setReps(e.target.value);
   }
 
+  function handleClose() {
+    dispatch(setExercise(null));
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.info_container}>
+        <button onClick={handleClose}>X</button>
         <div className={styles.exerciseInfo}>
           <h3>{exercise.name}</h3>
           <img src={exercise.imageURL} alt="" />
