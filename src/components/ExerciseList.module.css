@@ -2,4 +2,33 @@
   flex: 0.25;
   overflow: auto;
   height: 100vh;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+.container > div:nth-child(2) {
+  border-top: 2px solid #006494;
+  margin-top: 5rem;
+}
+.filter_container {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  position: fixed;
+  top: 0;
+  width: 25%;
+}
+.filter_container > input {
+  flex: 1;
+  font-size: 20px;
+}
+
+.filter_container > select {
+  width: 100%;
+}
+.filter_container > input {
+  width: 95%;
 }

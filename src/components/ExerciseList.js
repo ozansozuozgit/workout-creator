@@ -82,6 +82,7 @@ function ExerciseList() {
   }
 
   function getMoreExercises() {
+    if (!start.current) return;
     if (!endOfDocument.current) {
       let ref = null;
       if (searchText.current) {
@@ -115,37 +116,39 @@ function ExerciseList() {
 
   return (
     <div className={styles.container} ref={selectScroll}>
-      <input
-        type="text"
-        name=""
-        id=""
-        placeholder="Search Exercise"
-        onChange={handleSearch}
-      />
-      <select
-        name="categories"
-        id="categories"
-        onChange={handleCategory}
-        ref={selectRef}
-      >
-        <option value="All">All</option>
-        <option value="Chest">Chest</option>
-        <option value="Forearms">Forearms</option>
-        <option value="Lats">Lats</option>
-        <option value="Middle Back">Middle Back</option>
-        <option value="Lower Back">Lower Back</option>
-        <option value="Neck">Neck</option>
-        <option value="Quadriceps">Quadriceps</option>
-        <option value="Hamstrings">Hamstrings</option>
-        <option value="Calves">Calves</option>
-        <option value="Triceps">Triceps</option>
-        <option value="Traps">Traps</option>
-        <option value="Shoulders">Shoulders</option>
-        <option value="Abdominals">Abdominals</option>
-        <option value="Glutes">Glutes</option>
-        <option value="Biceps">Biceps</option>
-        <option value="Adductors">Abductors</option>
-      </select>
+      <div className={styles.filter_container}>
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="Search Exercise"
+          onChange={handleSearch}
+        />
+        <select
+          name="categories"
+          id="categories"
+          onChange={handleCategory}
+          ref={selectRef}
+        >
+          <option value="All">All</option>
+          <option value="Chest">Chest</option>
+          <option value="Forearms">Forearms</option>
+          <option value="Lats">Lats</option>
+          <option value="Middle Back">Middle Back</option>
+          <option value="Lower Back">Lower Back</option>
+          <option value="Neck">Neck</option>
+          <option value="Quadriceps">Quadriceps</option>
+          <option value="Hamstrings">Hamstrings</option>
+          <option value="Calves">Calves</option>
+          <option value="Triceps">Triceps</option>
+          <option value="Traps">Traps</option>
+          <option value="Shoulders">Shoulders</option>
+          <option value="Abdominals">Abdominals</option>
+          <option value="Glutes">Glutes</option>
+          <option value="Biceps">Biceps</option>
+          <option value="Adductors">Abductors</option>
+        </select>
+      </div>
 
       {exerciseList.map((exercise, index) => (
         <Exercise exercise={exercise} key={index} />
