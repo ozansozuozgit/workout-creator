@@ -8,6 +8,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import db from '../firebase';
+import { motion } from 'framer-motion';
 
 function WorkoutCard({ workout, removeWorkout }) {
   const dispatch = useDispatch();
@@ -25,16 +26,47 @@ function WorkoutCard({ workout, removeWorkout }) {
       .doc(workout.id)
       .delete()
       .then(console.log('workout deleted'));
-      
-      //send up the id to the parent to remove from list
-    removeWorkout(workout.id);
+
+    //send up to parent to remove from list
+    removeWorkout();
   }
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      y: '-100vw',
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        duration: 1,
+        bounce: 0.5,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: '-100vw',
+    },
+  };
+
   return (
-    <div className={styles.container}>
-      <div onClick={modifyWorkout}> {workout.title}</div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      whileHover={{ scale: 1.1 }}
+      transition={{ ease: 'backInOut' }}
+      className={styles.container}
+    >
+      <div onClick={modifyWorkout}>
+        <h2>{workout.title}</h2>
+      </div>
       <button onClick={handleDelete}>Delete</button>
-    </div>
+    </motion.div>
   );
 }
 
