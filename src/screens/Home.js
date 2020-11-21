@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
-import { auth } from '../firebase';
-import { Link } from 'react-router-dom';
+
 import db from '../firebase';
 import { selectUser } from '../features/userSlice';
 import {
@@ -10,8 +9,9 @@ import {
 } from '../features/workoutsSlice';
 import { clearList } from '../features/exerciseSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import WorkoutCard from '../components/WorkoutCard';
-import MuscleCount from '../components/MuscleCount';
+import WorkoutList from '../components/WorkoutList';
+import MuscleCountList from '../components/MuscleCountList';
+import Navbar from '../components/Navbar';
 
 function Home() {
   const [workouts, setWorkout] = useState([]);
@@ -73,23 +73,14 @@ function Home() {
   }
 
   return (
-    <div className={styles.home}>
-      <h1>Home</h1>
-      <h2>Hello: {user.email}</h2>
-      {workouts &&
-        workouts.map((workout, index) => (
-          <WorkoutCard
-            key={index}
-            workout={workout}
-            removeWorkout={removeWorkout}
-          />
-        ))}
-      {workedMuscles &&
-        workedMuscles.map((muscle, index) => (
-          <MuscleCount key={index} muscle={muscle} />
-        ))}
-      <button onClick={() => auth.signOut()}>Sign out</button>
-      <Link to="/workout">create workout</Link>
+    <div className={styles.container}>
+      <Navbar />
+
+      {workouts && (
+        <WorkoutList workouts={workouts} removeWorkout={removeWorkout} />
+      )}
+
+      {workedMuscles && <MuscleCountList workedMuscles={workedMuscles} />}
     </div>
   );
 }

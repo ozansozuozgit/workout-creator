@@ -1,0 +1,13 @@
+.container {
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.container h2 {
+  margin: 0;
+}
+.home_nav {
+  flex: 0.1;
+}
