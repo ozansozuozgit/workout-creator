@@ -1,14 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { setExercise } from '../features/exerciseSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setExercise, selectChosenExercises } from '../features/exerciseSlice';
 import styles from './Exercise.module.css';
 
 function Exercise({ exercise }) {
   const dispatch = useDispatch();
+  const chosenExercises = useSelector(selectChosenExercises);
 
   const { imageURL, average, name, targetMuscle, equipment } = exercise;
 
   function handleClick() {
+    let duplicate = false;
+    for (let chosenExercise of chosenExercises) {
+      if (name === chosenExercise.name) duplicate = true;
+    }
+    if (duplicate) {
+      alert(`Exercise already chosen!`);
+      return;
+    }
     dispatch(setExercise(exercise));
   }
 
