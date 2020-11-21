@@ -14,7 +14,9 @@ function WorkoutCard({ workout, removeWorkout }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  function modifyWorkout() {
+  function modifyWorkout(e) {
+    console.log(e.target);
+    if (e.target.tagName === 'BUTTON') return;
     dispatch(setWorkoutExercises(workout.chosenExercises));
     dispatch(setCurrentWorkoutTitle(workout.title));
     dispatch(setCurrentWorkoutID(workout.id));
@@ -36,8 +38,9 @@ function WorkoutCard({ workout, removeWorkout }) {
       whileHover={{ scale: 1.1 }}
       transition={{ ease: 'backInOut' }}
       className={styles.container}
+      onClick={modifyWorkout}
     >
-      <div onClick={modifyWorkout}>
+      <div>
         <h2>{workout.title}</h2>
       </div>
       <button className={styles.close} onClick={handleDelete}></button>

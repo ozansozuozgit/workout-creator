@@ -22,6 +22,7 @@
   top: 0;
   width: 32px;
   height: 32px;
+  padding: 20px;
   opacity: 0.3;
   border: none;
   background: none;
@@ -37,6 +38,7 @@
   content: ' ';
   height: 33px;
   width: 2px;
+  top: 5px;
   background-color: #333;
 }
 .close:before {
