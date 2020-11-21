@@ -47,11 +47,11 @@ function Login() {
           {errors.password && (
             <p>Please enter a password between 6-12 characters</p>
           )}
-          <input type="submit" disabled={loading} />
+          <input type="submit" disabled={loading} value="submit" />
         </form>
-        <p>
+        <span>
           Need an account? <Link to="/signup">Sign Up</Link>
-        </p>
+        </span>
       </div>
     </div>
   );

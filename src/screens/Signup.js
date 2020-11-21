@@ -16,7 +16,7 @@ function Signup() {
   useEffect(() => {
     if (user) history.push('/');
   }, [user, history]);
-  
+
   function onSubmit(data) {
     auth
       .createUserWithEmailAndPassword(data.email, data.password)
@@ -48,11 +48,11 @@ function Signup() {
           {errors.password && (
             <p>Please enter a password between 6-12 characters</p>
           )}
-          <input type="submit" disabled={loading} />
+          <input type="submit" disabled={loading} value="submit" />
         </form>
-        <p>
+        <span>
           Already have an account? <Link to="/login">Log In</Link>
-        </p>
+        </span>
       </div>
     </div>
   );

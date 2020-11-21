@@ -1,5 +1,4 @@
 .container {
-  background: #0e101c;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,7 +21,6 @@
 }
 
 .form {
-  background: #0e101c;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -60,20 +58,21 @@
 
 .form button[type='submit'],
 .form input[type='submit'] {
-  background: #ec5990;
+  background: #660708;
   color: white;
   text-transform: uppercase;
   border: none;
   margin-top: 40px;
   padding: 20px;
   font-size: 16px;
-  font-weight: 100;
+  font-weight: 300;
   letter-spacing: 10px;
 }
 
 .form button[type='submit']:hover,
 .form input[type='submit']:hover {
-  background: #bf1650;
+  background: #e5383b;
+  cursor: pointer;
 }
 
 .form button[type='submit']:active,
@@ -123,4 +122,19 @@
   text-transform: uppercase;
   padding: 10px 20px;
   border-radius: 4px;
+}
+
+.form_container span {
+  color: #f5f3f4;
+  text-align: center;
+  display: block;
+}
+
+.form_container span > a {
+  text-decoration: none;
+  color: #a4161a;
+}
+
+.form_container span > a:hover {
+  color: #e5383b;
 }
