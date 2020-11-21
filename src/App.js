@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './features/userSlice';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import Home from './screens/Home';
 import WorkoutCreator from './screens/WorkoutCreator';
 import Login from './screens/Login';
@@ -10,10 +10,12 @@ import { auth } from './firebase';
 import PrivateRoute from './screens/PrivateRoute';
 import Loader from './components/Loader';
 import styles from './App.module.css';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -36,12 +38,14 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        <Switch>
-          <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/workout" component={WorkoutCreator} />
-          <Route eact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.key}>
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/workout" component={WorkoutCreator} />
+            <Route eact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </AnimatePresence>
       )}
     </div>
   );

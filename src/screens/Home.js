@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
-
 import db from '../firebase';
 import { selectUser } from '../features/userSlice';
 import {
@@ -12,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import WorkoutList from '../components/WorkoutList';
 import MuscleCountList from '../components/MuscleCountList';
 import Navbar from '../components/Navbar';
+import { motion } from 'framer-motion';
 
 function Home() {
   const [workouts, setWorkout] = useState([]);
@@ -20,6 +20,23 @@ function Home() {
   const [workedMuscles, setWorkedMuscles] = useState([]);
   const allMuscles = [];
   const [sum, setSum] = useState(0);
+
+  const containerVariants = {
+    hidden: {
+      scale: 0,
+    },
+    visible: {
+      scale: 1,
+      transition: {
+        duration: 1,
+        type: 'tween',
+        ease: 'easeInOut',
+      },
+    },
+    exit: {
+      scale: 0,
+    },
+  };
 
   useEffect(() => {
     getWorkouts();
@@ -83,7 +100,13 @@ function Home() {
   }
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className={styles.container}
+    >
       <Navbar user={user} />
 
       {workouts && (
@@ -93,7 +116,7 @@ function Home() {
       {workedMuscles && (
         <MuscleCountList workedMuscles={workedMuscles} sum={sum} />
       )}
-    </div>
+    </motion.div>
   );
 }
 
