@@ -5,6 +5,7 @@ export const workoutsSlice = createSlice({
   initialState: {
     currentWorkoutTitle: '',
     currentWorkoutID: '',
+    totalMuscleCount: 1,
   },
   reducers: {
     setCurrentWorkoutID: (state, action) => {
@@ -12,6 +13,9 @@ export const workoutsSlice = createSlice({
     },
     setCurrentWorkoutTitle: (state, action) => {
       state.currentWorkoutTitle = action.payload;
+    },
+    setTotalMuscleCount: (state, action) => {
+      state.totalMuscleCount = action.payload;
     },
     clearCurrentWorkoutID: (state) => {
       state.currentWorkoutID = '';
@@ -27,6 +31,7 @@ export const {
   clearCurrentWorkoutID,
   setCurrentWorkoutTitle,
   clearCurrentWorkoutTitle,
+  setTotalMuscleCount,
 } = workoutsSlice.actions;
 
 export const selectCurrentWorkoutID = (state) =>
@@ -34,5 +39,7 @@ export const selectCurrentWorkoutID = (state) =>
 
 export const selectCurrentWorkoutTitle = (state) =>
   state.workouts.currentWorkoutTitle;
+export const selectTotalMuscleCount = (state) =>
+  state.workouts.totalMuscleCount;
 
 export default workoutsSlice.reducer;
