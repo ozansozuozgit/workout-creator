@@ -108,14 +108,8 @@ function Home() {
       className={styles.container}
     >
       <Navbar user={user} />
-
-      {workouts && (
-        <WorkoutList workouts={workouts} removeWorkout={removeWorkout} />
-      )}
-
-      {workedMuscles && (
-        <MuscleCountList workedMuscles={workedMuscles} sum={sum} />
-      )}
+      <WorkoutList workouts={workouts} removeWorkout={removeWorkout} />
+      <MuscleCountList workedMuscles={workedMuscles} sum={sum} />
     </motion.div>
   );
 }

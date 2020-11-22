@@ -20,10 +20,10 @@ function Login() {
 
   const containerVariants = {
     hidden: {
-      scale: 0,
+      opacity: 0,
     },
     visible: {
-      scale: 1,
+      opacity: 1,
       transition: {
         duration: 1,
         type: 'tween',
@@ -31,7 +31,7 @@ function Login() {
       },
     },
     exit: {
-      scale: 0,
+      opacity: 0,
     },
   };
 
@@ -66,6 +66,7 @@ function Login() {
           <label>Password</label>
           <input
             name="password"
+            type="password"
             ref={register({ required: true, minLength: 6, maxLength: 12 })}
           />
           {errors.password && (

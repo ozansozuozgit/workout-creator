@@ -26,10 +26,10 @@ function Signup() {
 
   const containerVariants = {
     hidden: {
-      scale: 0,
+      opacity: 0,
     },
     visible: {
-      scale: 1,
+      opacity: 1,
       transition: {
         duration: 1,
         type: 'tween',
@@ -37,7 +37,7 @@ function Signup() {
       },
     },
     exit: {
-      scale: 0,
+      opacity: 0,
     },
   };
 
@@ -72,7 +72,7 @@ function Signup() {
           {errors.password && (
             <p>Please enter a password between 6-12 characters</p>
           )}
-          <input type="submit" disabled={loading} value="Sign Up" />
+          <input type="submit" disabled={loading} value="submit" />
         </form>
         <span>
           Already have an account? <Link to="/login">Log In</Link>
