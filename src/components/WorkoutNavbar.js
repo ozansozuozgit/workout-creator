@@ -11,6 +11,7 @@ import {
 import { selectUser } from '../features/userSlice';
 import { useHistory } from 'react-router-dom';
 import db from '../firebase';
+import HomeIcon from '@material-ui/icons/Home';
 
 function WorkoutNavbar() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function WorkoutNavbar() {
 
   function saveWorkout() {
     if (title === '') {
-      alert('Enter Title!');
+      alert('Please Enter Workout Name');
       return;
     }
 
@@ -66,14 +67,20 @@ function WorkoutNavbar() {
   }
   return (
     <div className={styles.container}>
-      <button onClick={() => history.push('/')}>Go Home</button>
+      <HomeIcon
+        className={styles.back_button}
+        onClick={() => history.push('/')}
+        style={{ fontSize: '2rem' }}
+      ></HomeIcon>
       <input
         type="text"
         placeholder="Enter Workout Name"
         onChange={handleInput}
         value={title}
       />
-      <button onClick={saveWorkout}>Save Workout</button>
+      <button className={styles.save_button} onClick={saveWorkout}>
+        Save Workout
+      </button>
     </div>
   );
 }

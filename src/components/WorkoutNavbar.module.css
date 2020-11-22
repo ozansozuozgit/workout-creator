@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding-top: 20px;
   background: white;
   position: fixed;
@@ -26,21 +27,25 @@
   text-align: center;
 }
 
-.container > a,
-.container > button,
-.container > h2 {
+.save_button {
   border: none;
-  color: #1b98e0;
-  text-decoration: none;
+  background-color: #1b98e0;
   font-size: 20px;
   padding: 10px;
   border-radius: 5px;
-  border-bottom: 2px solid #1b98e0;
-  background: none;
+  border: 1px solid #13293d;
+  color: white;
 }
 
-.container > a:hover,
-.container > button:hover {
-  color: #13293d;
+.save_button:hover {
+  background-color: #1b98e0b9;
   cursor: pointer;
+}
+
+.back_button {
+  color: #1b98e0;
+}
+.back_button:hover {
+  cursor: pointer;
+  color: black;
 }
