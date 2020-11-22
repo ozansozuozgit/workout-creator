@@ -12,9 +12,56 @@
 .container:hover {
   cursor: pointer;
 }
+.container:active {
+  opacity: 0.8;
+}
 .container > h1 {
   font-size: 26px;
 }
 .container img {
   width: 50%;
+  border-radius: 50%;
+}
+
+.container {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  background: #1b98e0;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.container:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.container:hover,
+.container:focus,
+.container:active {
+  color: white;
+}
+.container:hover:before,
+.container:focus:before,
+.container:active:before {
+  -webkit-transform: scale(0);
+  transform: scale(0);
 }
