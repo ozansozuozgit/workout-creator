@@ -9,18 +9,19 @@ import MobileNavbar from '../components/mobile_nav/MobileNavbar';
 function WorkoutCreator() {
   const containerVariants = {
     hidden: {
-      scale: 0,
+      opacity: 0,
+      x: '100vw',
     },
     visible: {
-      scale: 1,
+      opacity: 1,
+      x: 0,
       transition: {
         duration: 1,
-        type: 'tween',
-        ease: 'easeInOut',
       },
     },
     exit: {
-      scale: 0,
+      opacity: 0,
+      x: '100vw',
     },
   };
 
