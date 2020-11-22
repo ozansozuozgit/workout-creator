@@ -13,6 +13,7 @@ import { clearList } from '../features/exerciseSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import db from '../firebase';
 import { motion } from 'framer-motion';
+import MobileNavbar from '../components/mobile_nav/MobileNavbar';
 
 function Home() {
   const [workouts, setWorkout] = useState([]);
@@ -106,7 +107,8 @@ function Home() {
       exit="exit"
       className={styles.container}
     >
-      <Navbar user={user} />
+      <MobileNavbar />
+      {/* <Navbar user={user} /> */}
       <WorkoutList workouts={workouts} removeWorkout={removeWorkout} />
       <MuscleCountList workedMuscles={workedMuscles} />
     </motion.div>

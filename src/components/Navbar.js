@@ -2,9 +2,12 @@ import React from 'react';
 import styles from './Navbar.module.css';
 import { auth } from '../firebase';
 import { Link, useHistory } from 'react-router-dom';
+import { selectUser } from '../features/userSlice';
+import { useSelector } from 'react-redux';
 
-function Navbar({ user }) {
+function Navbar() {
   const history = useHistory();
+  const user = useSelector(selectUser);
   function handleLogout() {
     history.push('/login');
     auth.signOut();

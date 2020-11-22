@@ -3,6 +3,8 @@
   display: flex;
   align-items: center;
   color: #247ba0;
+  min-width: 100%;
+  justify-content: space-around;
 }
 .container > a,
 .container > button,
@@ -40,4 +42,24 @@
 }
 .container > a:active {
   background-color: #247ba0;
+}
+@media (max-width: 768px) {
+  .container {
+    flex: 0.5;
+    flex-direction: column;
+  }
+  .container > a,
+  .container > button,
+  .container > h2 {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+  }
+  .container > a:hover,
+  .container > button:hover {
+    color: #1b98e0;
+    background: none;
+    opacity: 0.5;
+  }
 }
