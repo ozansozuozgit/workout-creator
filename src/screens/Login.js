@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './Signup.module.css';
+import styles from './SignupLogin.module.css';
 import isEmail from 'validator/lib/isEmail';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { auth } from '../firebase';
 import { selectUser } from '../features/userSlice';
+import { motion } from 'framer-motion';
 
 function Login() {
   const { register, handleSubmit, errors } = useForm();
@@ -17,6 +18,23 @@ function Login() {
     if (user) history.push('/');
   }, [user, history]);
 
+  const containerVariants = {
+    hidden: {
+      scale: 0,
+    },
+    visible: {
+      scale: 1,
+      transition: {
+        duration: 1,
+        type: 'tween',
+        ease: 'easeInOut',
+      },
+    },
+    exit: {
+      scale: 0,
+    },
+  };
+
   function onSubmit(data) {
     auth
       .signInWithEmailAndPassword(data.email, data.password)
@@ -25,7 +43,13 @@ function Login() {
   }
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className={styles.container}
+    >
       <div className={styles.form_container}>
         <h1>Login</h1>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -53,7 +77,7 @@ function Login() {
           Need an account? <Link to="/signup">Sign Up</Link>
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './Signup.module.css';
+import styles from './SignupLogin.module.css';
 import isEmail from 'validator/lib/isEmail';
 import { Link, useHistory } from 'react-router-dom';
 import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 import { auth } from '../firebase';
+import { motion } from 'framer-motion';
 
 function Signup() {
   const { register, handleSubmit, errors } = useForm();
@@ -21,11 +22,33 @@ function Signup() {
     auth
       .createUserWithEmailAndPassword(data.email, data.password)
       .catch((error) => alert(error.message));
-    console.log(user);
   }
 
+  const containerVariants = {
+    hidden: {
+      scale: 0,
+    },
+    visible: {
+      scale: 1,
+      transition: {
+        duration: 1,
+        type: 'tween',
+        ease: 'easeInOut',
+      },
+    },
+    exit: {
+      scale: 0,
+    },
+  };
+
   return (
-    <div className={styles.container}>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className={styles.container}
+    >
       <div className={styles.form_container}>
         <h1>Signup</h1>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -43,18 +66,19 @@ function Signup() {
           <label>Password</label>
           <input
             name="password"
+            type="password"
             ref={register({ required: true, minLength: 6, maxLength: 12 })}
           />
           {errors.password && (
             <p>Please enter a password between 6-12 characters</p>
           )}
-          <input type="submit" disabled={loading} value="submit" />
+          <input type="submit" disabled={loading} value="Sign Up" />
         </form>
         <span>
           Already have an account? <Link to="/login">Log In</Link>
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
