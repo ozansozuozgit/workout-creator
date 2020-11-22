@@ -13,7 +13,7 @@ import SelectedExercise from './SelectedExercise';
 import { useHistory } from 'react-router-dom';
 import db from '../firebase';
 
-function Workout() {
+function SelectedExercises() {
   const dispatch = useDispatch();
   const history = useHistory();
   const chosenExercises = useSelector(selectChosenExercises);
@@ -78,4 +78,4 @@ function Workout() {
   );
 }
 
-export default Workout;
+export default SelectedExercises;

@@ -35,7 +35,7 @@ function WorkoutCreator() {
     >
       <SelectedExercises />
       <ExerciseList />
-      {exercise && <AddExerciseModal exercise={exercise} />}
+      {/* {exercise && <AddExerciseModal exercise={exercise} />} */}
     </motion.div>
   );
 }

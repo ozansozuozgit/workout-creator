@@ -7,7 +7,7 @@ import {
   updateReps,
 } from '../features/exerciseSlice';
 
-function WorkoutExercise({ exercise }) {
+function SelectedExercise({ exercise }) {
   const dispatch = useDispatch();
 
   function handleRemove() {
@@ -47,4 +47,4 @@ function WorkoutExercise({ exercise }) {
   );
 }
 
-export default WorkoutExercise;
+export default SelectedExercise;

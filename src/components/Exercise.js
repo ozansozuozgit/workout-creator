@@ -1,6 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExercise, selectChosenExercises } from '../features/exerciseSlice';
+import {
+  setExercise,
+  selectChosenExercises,
+  setChosenExercises,
+} from '../features/exerciseSlice';
 import styles from './Exercise.module.css';
 
 function Exercise({ exercise }) {
@@ -18,7 +22,11 @@ function Exercise({ exercise }) {
       alert(`Exercise already chosen!`);
       return;
     }
-    dispatch(setExercise(exercise));
+    // dispatch(setExercise(exercise));
+    let newExercise = { ...exercise };
+    newExercise.sets = '1';
+    newExercise.reps = '1';
+    dispatch(setChosenExercises(newExercise));
   }
 
   return (
