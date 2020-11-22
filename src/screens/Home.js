@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 import WorkoutList from '../components/WorkoutList';
 import MuscleCountList from '../components/MuscleCountList';
-import Navbar from '../components/Navbar';
 import { selectUser } from '../features/userSlice';
 import {
   clearCurrentWorkoutID,

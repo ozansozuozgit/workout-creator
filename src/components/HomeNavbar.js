@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { selectUser } from '../features/userSlice';
 import { useSelector } from 'react-redux';
 
-function Navbar() {
+function HomeNavbar() {
   const history = useHistory();
   const user = useSelector(selectUser);
   function handleLogout() {
@@ -21,4 +21,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default HomeNavbar;
