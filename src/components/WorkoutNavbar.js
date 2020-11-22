@@ -39,7 +39,7 @@ function WorkoutNavbar() {
       alert('Enter Title!');
       return;
     }
-    
+
     for (let chosenExercise of chosenExercises) {
       if (chosenExercise.sets <= 0 || chosenExercise.reps <= 0)
         belowZeroSetsorReps = true;
@@ -53,13 +53,11 @@ function WorkoutNavbar() {
     if (currentWorkoutID === '') {
       db.collection('workouts')
         .doc()
-        .set({ title, uid: user.uid, chosenExercises })
-        .then(console.log('Workout passed'));
+        .set({ title, uid: user.uid, chosenExercises });
     } else {
       db.collection('workouts')
         .doc(currentWorkoutID)
-        .update({ title, uid: user.uid, chosenExercises })
-        .then(console.log('Workout passed'));
+        .update({ title, uid: user.uid, chosenExercises });
     }
     dispatch(clearList());
     dispatch(clearCurrentWorkoutID());

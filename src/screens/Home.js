@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Home.module.css';
-import db from '../firebase';
+import WorkoutList from '../components/WorkoutList';
+import MuscleCountList from '../components/MuscleCountList';
+import Navbar from '../components/Navbar';
 import { selectUser } from '../features/userSlice';
 import {
   clearCurrentWorkoutID,
   clearCurrentWorkoutTitle,
+  setTotalMuscleCount,
 } from '../features/workoutsSlice';
 import { clearList } from '../features/exerciseSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import WorkoutList from '../components/WorkoutList';
-import MuscleCountList from '../components/MuscleCountList';
-import Navbar from '../components/Navbar';
+import db from '../firebase';
 import { motion } from 'framer-motion';
 
 function Home() {
@@ -19,7 +20,6 @@ function Home() {
   const dispatch = useDispatch();
   const [workedMuscles, setWorkedMuscles] = useState([]);
   const allMuscles = [];
-  const [sum, setSum] = useState(0);
 
   const containerVariants = {
     hidden: {
@@ -88,9 +88,8 @@ function Home() {
     let total = 0;
     for (let i = 0; i < sorted.length; i++) {
       total += sorted[i][1];
-      setSum(sum + sorted[i][1]);
     }
-    setSum(total);
+    dispatch(setTotalMuscleCount(total));
   }
 
   function removeWorkout() {
@@ -109,7 +108,7 @@ function Home() {
     >
       <Navbar user={user} />
       <WorkoutList workouts={workouts} removeWorkout={removeWorkout} />
-      <MuscleCountList workedMuscles={workedMuscles} sum={sum} />
+      <MuscleCountList workedMuscles={workedMuscles} />
     </motion.div>
   );
 }

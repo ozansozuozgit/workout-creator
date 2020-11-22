@@ -7,9 +7,6 @@ export const exerciseSlice = createSlice({
     chosenExercises: [],
   },
   reducers: {
-    setExercise: (state, action) => {
-      state.exercise = action.payload;
-    },
     setChosenExercises: (state, action) => {
       state.chosenExercises.push(action.payload);
     },
@@ -40,7 +37,6 @@ export const exerciseSlice = createSlice({
 });
 
 export const {
-  setExercise,
   setChosenExercises,
   removeExercise,
   updateSets,

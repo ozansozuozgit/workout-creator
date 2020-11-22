@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login, logout } from './features/userSlice';
-import { Switch, Route, useLocation } from 'react-router-dom';
 import Home from './screens/Home';
 import WorkoutCreator from './screens/WorkoutCreator';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
-import { auth } from './firebase';
 import PrivateRoute from './screens/PrivateRoute';
+import { useDispatch } from 'react-redux';
+import { login, logout } from './features/userSlice';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import { auth } from './firebase';
 import Loader from './components/Loader';
 import styles from './App.module.css';
 import { AnimatePresence } from 'framer-motion';

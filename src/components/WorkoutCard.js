@@ -22,11 +22,7 @@ function WorkoutCard({ workout, removeWorkout }) {
   }
 
   function handleDelete() {
-    db.collection('workouts')
-      .doc(workout.id)
-      .delete()
-      .then(console.log('workout deleted'));
-
+    db.collection('workouts').doc(workout.id).delete();
     //send up to parent to remove from list
     removeWorkout();
   }

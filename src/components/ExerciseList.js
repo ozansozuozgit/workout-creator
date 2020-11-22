@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './ExerciseList.module.css';
-import db from '../firebase';
 import Exercise from './Exercise';
+import db from '../firebase';
 
-// TODO: Add Search functionality
 function ExerciseList() {
   const [exerciseList, setExerciseList] = useState([]);
   let endOfDocument = useRef(false);
@@ -14,7 +13,6 @@ function ExerciseList() {
   const searchText = useRef('');
 
   useEffect(() => {
-    // getExercises();
     const { current } = selectScroll;
     current.addEventListener('scroll', () => {
       if (current.scrollTop + current.clientHeight >= current.scrollHeight) {

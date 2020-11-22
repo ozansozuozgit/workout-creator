@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setExercise,
   selectChosenExercises,
   setChosenExercises,
 } from '../features/exerciseSlice';
@@ -22,7 +21,6 @@ function Exercise({ exercise }) {
       alert(`Exercise already chosen!`);
       return;
     }
-    // dispatch(setExercise(exercise));
     let newExercise = { ...exercise };
     newExercise.sets = '1';
     newExercise.reps = '1';

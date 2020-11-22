@@ -1,7 +1,7 @@
 import React from 'react';
+import styles from './Navbar.module.css';
 import { auth } from '../firebase';
 import { Link, useHistory } from 'react-router-dom';
-import styles from './Navbar.module.css';
 
 function Navbar({ user }) {
   const history = useHistory();
