@@ -8,14 +8,12 @@ import {
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import db from '../firebase';
-import { motion } from 'framer-motion';
 
 function WorkoutCard({ workout, removeWorkout }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   function modifyWorkout(e) {
-    console.log(e.target);
     if (e.target.tagName === 'BUTTON') return;
     dispatch(setWorkoutExercises(workout.chosenExercises));
     dispatch(setCurrentWorkoutTitle(workout.title));
@@ -34,17 +32,12 @@ function WorkoutCard({ workout, removeWorkout }) {
   }
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      transition={{ ease: 'backInOut' }}
-      className={styles.container}
-      onClick={modifyWorkout}
-    >
+    <div className={styles.container} onClick={modifyWorkout}>
       <div>
         <h2>{workout.title}</h2>
       </div>
       <button className={styles.close} onClick={handleDelete}></button>
-    </motion.div>
+    </div>
   );
 }
 
