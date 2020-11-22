@@ -3,12 +3,12 @@ import { selectTotalMuscleCount } from '../features/workoutsSlice';
 import { useSelector } from 'react-redux';
 
 function ProgressBar({ bgcolor, muscleCount }) {
-  const [completedWith, setCompletedWith] = useState(0);
+  const [completedWidth, setCompletedWidth] = useState(0);
   const sum = useSelector(selectTotalMuscleCount);
 
   useEffect(() => {
     setTimeout(() => {
-      setCompletedWith(Math.round((muscleCount / sum) * 100));
+      setCompletedWidth(Math.round((muscleCount / sum) * 100));
     }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sum]);
@@ -22,7 +22,7 @@ function ProgressBar({ bgcolor, muscleCount }) {
 
   const fillerStyles = {
     height: '100%',
-    width: `${completedWith}%`,
+    width: `${completedWidth}%`,
     backgroundColor: bgcolor,
     borderRadius: 'inherit',
     textAlign: 'right',

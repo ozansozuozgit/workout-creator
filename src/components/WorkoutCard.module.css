@@ -13,6 +13,9 @@
 .container:hover {
   cursor: pointer;
 }
+.container:active {
+  opacity: 0.5;
+}
 
 .container h2 {
   color: #13293d;

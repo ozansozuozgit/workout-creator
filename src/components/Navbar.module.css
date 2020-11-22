@@ -20,6 +20,8 @@
 
 .container > a {
   flex: 0.4;
+  color: white;
+  background-color: #1b98e0;
 }
 
 .container > button,
@@ -31,4 +33,11 @@
 .container > button:hover {
   color: #13293d;
   cursor: pointer;
+}
+.container > a:hover {
+  background-color: #1b98e0c9;
+  color: white;
+}
+.container > a:active {
+  background-color: #247ba0;
 }
