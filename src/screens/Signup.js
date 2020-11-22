@@ -11,6 +11,8 @@ import { motion } from 'framer-motion';
 function Signup() {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const user = useSelector(selectUser);
   const history = useHistory();
 
@@ -19,9 +21,16 @@ function Signup() {
   }, [user, history]);
 
   function onSubmit(data) {
+    setLoading(true);
     auth
       .createUserWithEmailAndPassword(data.email, data.password)
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        setErrorMessage(error.message);
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 3000);
+        setLoading(false);
+      });
   }
 
   const containerVariants = {
@@ -73,6 +82,7 @@ function Signup() {
             <p>Please enter a password between 6-12 characters</p>
           )}
           <input type="submit" disabled={loading} value="submit" />
+          {errorMessage !== '' && <p>{errorMessage}</p>}
         </form>
         <span>
           Already have an account? <Link to="/login">Log In</Link>
