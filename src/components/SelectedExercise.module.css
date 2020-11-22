@@ -18,6 +18,11 @@
   border-radius: 50%;
 }
 
+.container:hover {
+  cursor: pointer;
+  border-color: #1b98e0;
+}
+
 .sets_reps {
   display: flex;
   justify-content: center;
