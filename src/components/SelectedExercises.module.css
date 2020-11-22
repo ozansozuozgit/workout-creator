@@ -1,14 +1,4 @@
-.container {
-  flex: 0.75;
-  overflow: auto;
-  height: 100vh;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
 
-.container::-webkit-scrollbar {
-  display: none;
-}
 
 .chosen_exercise_container {
   display: grid;

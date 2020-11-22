@@ -2,12 +2,10 @@ import React from 'react';
 import styles from './WorkoutCreator.module.css';
 import ExerciseList from '../components/ExerciseList';
 import SelectedExercises from '../components/SelectedExercises';
-import { selectExercise } from '../features/exerciseSlice';
-import { useSelector } from 'react-redux';
-import AddExerciseModal from '../components/AddExerciseModal';
+import WorkoutNavbar from '../components/WorkoutNavbar';
+
 import { motion } from 'framer-motion';
 function WorkoutCreator() {
-  const exercise = useSelector(selectExercise);
   const containerVariants = {
     hidden: {
       scale: 0,
@@ -33,9 +31,11 @@ function WorkoutCreator() {
       exit="exit"
       className={styles.container}
     >
-      <SelectedExercises />
+      <div className={styles.left_container}>
+        <WorkoutNavbar />
+        <SelectedExercises />
+      </div>
       <ExerciseList />
-      {/* {exercise && <AddExerciseModal exercise={exercise} />} */}
     </motion.div>
   );
 }

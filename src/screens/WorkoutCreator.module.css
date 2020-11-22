@@ -1,5 +1,16 @@
 .container {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   font-family: 'Times New Roman', Times, serif;
+}
+.left_container {
+  flex: 0.75;
+  overflow: auto;
+  height: 100vh;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.left_container::-webkit-scrollbar {
+  display: none;
 }

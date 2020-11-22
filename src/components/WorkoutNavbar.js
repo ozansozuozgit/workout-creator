@@ -21,6 +21,7 @@ function WorkoutNavbar() {
 
   const user = useSelector(selectUser);
   const [title, setTitle] = useState('');
+  let belowZeroSetsorReps = false;
 
   useEffect(() => {
     if (currentWorkoutTitle) {
@@ -38,6 +39,17 @@ function WorkoutNavbar() {
       alert('Enter Title!');
       return;
     }
+    
+    for (let chosenExercise of chosenExercises) {
+      if (chosenExercise.sets <= 0 || chosenExercise.reps <= 0)
+        belowZeroSetsorReps = true;
+    }
+
+    if (belowZeroSetsorReps) {
+      alert('Your exercises cannot have 0 or below reps or sets!');
+      return;
+    }
+
     if (currentWorkoutID === '') {
       db.collection('workouts')
         .doc()
