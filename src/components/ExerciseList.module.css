@@ -33,3 +33,20 @@
 .filter_container > input {
   width: 95%;
 }
+
+@media (max-width: 768px) {
+  .filter_container > select {
+    min-width: 208px;
+  }
+  .filter_container > input {
+    min-width: 200px;
+  }
+}
+@media (max-width: 576px) {
+  .filter_container > select {
+    min-width: 308px;
+  }
+  .filter_container > input {
+    min-width: 300px;
+  }
+}

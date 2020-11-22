@@ -5,6 +5,7 @@ import SelectedExercises from '../components/SelectedExercises';
 import WorkoutNavbar from '../components/WorkoutNavbar';
 
 import { motion } from 'framer-motion';
+import MobileNavbar from '../components/mobile_nav/MobileNavbar';
 function WorkoutCreator() {
   const containerVariants = {
     hidden: {
@@ -35,7 +36,8 @@ function WorkoutCreator() {
         <WorkoutNavbar />
         <SelectedExercises />
       </div>
-      <ExerciseList />
+      {/* <ExerciseList /> */}
+      <MobileNavbar />
     </motion.div>
   );
 }
