@@ -32,7 +32,7 @@ Workout Creator
 ## Built with 
 
 - **React**
-- **Redux**
+- **Redux (Redux Toolkit)**
 - **CSS Modules**
 - **Styled Components**
 - **Framer Motion**
