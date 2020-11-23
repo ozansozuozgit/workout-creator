@@ -11,7 +11,7 @@
 <table>
 <tr>
 <td>
-  A webapp created with React and firebase to create and modify workouts with an overview of which muscle groups are being worked the most. It is fully responsive for all devices with a clean and intuitive design. Saves users and their workouts in a firebase database.
+ A web app created with React, Redux, and Firebase to create and modify workouts with an overview of which muscle groups are being worked the most in user workouts. It is fully responsive for all devices with a clean and intuitive design. Saves and retrieves the user's workouts in a firebase database.
 </td>
 </tr>
 </table>
