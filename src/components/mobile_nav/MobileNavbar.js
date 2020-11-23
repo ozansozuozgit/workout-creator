@@ -5,6 +5,12 @@ import { useLocation } from 'react-router-dom';
 
 const DIV = styled.nav`
   flex: ${({ path }) => (path === '/' ? '1' : 0.25)};
+  @media (min-width: 1200px) {
+    flex: 0.2;
+  }
+  @media (max-width: 768px) {
+    flex: 0;
+  }
 `;
 
 const MobileNavbar = () => {

@@ -1,5 +1,4 @@
 .container {
-  flex: 0.25;
   overflow: auto;
   height: 100vh;
   scrollbar-width: none;
@@ -33,7 +32,11 @@
 .filter_container > input {
   width: 100%;
 }
-
+@media (min-width: 1200px) {
+  .filter_container {
+    width: 20%;
+  }
+}
 @media (max-width: 768px) {
   .filter_container {
     width: 100%;

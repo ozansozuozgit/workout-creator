@@ -49,3 +49,20 @@
   cursor: pointer;
   color: black;
 }
+@media (min-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    border: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    width: 100%;
+    padding-top: 60px;
+  }
+}
