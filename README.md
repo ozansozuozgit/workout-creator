@@ -19,6 +19,7 @@
 ## Features
 
 - Signup and Login
+- Optional Sign in with Google Auth
 - Create Workout
 - Modify Workout
 - Save workout to database
