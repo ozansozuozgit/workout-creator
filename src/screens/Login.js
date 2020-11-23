@@ -84,20 +84,20 @@ function Login() {
           )}
           <input type="submit" disabled={loading} value="submit" />
           {errorMessage !== '' && <p>{errorMessage}</p>}
+          <span>
+            Need an account? <Link to="/signup">Sign Up</Link>{' '}
+          </span>
+          <div
+            className={styles.google_sign_container}
+            onClick={handleGoogleSignIn}
+          >
+            <img
+              src="https://img.icons8.com/plasticine/100/000000/google-logo.png"
+              alt="google logo"
+            />
+            <span>Sign in with Google</span>
+          </div>
         </form>
-        <span>
-          Need an account? <Link to="/signup">Sign Up</Link>
-        </span>
-        <div
-          className={styles.google_sign_container}
-          onClick={handleGoogleSignIn}
-        >
-          <img
-            src="https://img.icons8.com/plasticine/100/000000/google-logo.png"
-            alt="google logo"
-          />
-          <span>Sign in with Google</span>
-        </div>
       </div>
     </motion.div>
   );
