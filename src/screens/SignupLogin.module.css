@@ -9,7 +9,7 @@
 }
 
 .form_container {
-  width: 100%;
+  width: 70%;
 }
 
 .container h1 {
@@ -137,4 +137,27 @@
 
 .form_container span > a:hover {
   color: #e5383b;
+}
+
+.google_sign_container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  box-shadow: 0px 3px 12px black;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.google_sign_container:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.google_sign_container > img {
+  width: 20px;
+}
+
+@media (min-width: 768px) {
+  .google_sign_container {
+    width: 50%;
+  }
 }

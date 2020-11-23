@@ -4,7 +4,7 @@ import styles from './SignupLogin.module.css';
 import isEmail from 'validator/lib/isEmail';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { auth } from '../firebase';
+import { auth, provider } from '../firebase';
 import { selectUser } from '../features/userSlice';
 import { motion } from 'framer-motion';
 
@@ -48,6 +48,9 @@ function Login() {
         setLoading(false);
       });
   }
+  function handleGoogleSignIn() {
+    auth.signInWithPopup(provider).catch((error) => alert(error.message));
+  }
 
   return (
     <motion.div
@@ -85,6 +88,16 @@ function Login() {
         <span>
           Need an account? <Link to="/signup">Sign Up</Link>
         </span>
+        <div
+          className={styles.google_sign_container}
+          onClick={handleGoogleSignIn}
+        >
+          <img
+            src="https://img.icons8.com/plasticine/100/000000/google-logo.png"
+            alt="google logo"
+          />
+          <span>Sign in with Google</span>
+        </div>
       </div>
     </motion.div>
   );
