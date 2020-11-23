@@ -1,14 +1,12 @@
-Workout Creator
-============
+# Workout Creator
 
 ## Live Demo
 
-- [Workout Creator](https://workout-creator-29a33.web.app/) 
+- [Workout Creator](https://workout-creator-29a33.web.app/)
 
-|              |   |
-|---------------------|----------------------|
-|![pomolectron-macos](https://i.ibb.co/cgnLYLC/screenshot-responsive.png) | ![](https://i.ibb.co/R72yr6L/recording.gif) |
-
+|                                                         |                                             |
+| ------------------------------------------------------- | ------------------------------------------- |
+| ![](https://i.ibb.co/cgnLYLC/screenshot-responsive.png) | ![](https://i.ibb.co/R72yr6L/recording.gif) |
 
 <table>
 <tr>
@@ -19,6 +17,7 @@ Workout Creator
 </table>
 
 ## Features
+
 - Signup and Login
 - Create Workout
 - Modify Workout
@@ -28,8 +27,7 @@ Workout Creator
 - Filter Exercises based on targeted muscle group
 - Search exercises (limited capability)
 
-
-## Built with 
+## Built with
 
 - **React**
 - **Redux (Redux Toolkit)**
