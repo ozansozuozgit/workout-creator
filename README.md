@@ -1,9 +1,9 @@
 Workout Creator
 ============
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Demo
 
-## Available Scripts
+- [Workout Creator](https://workout-creator-29a33.web.app/) 
 
 |              |   |
 |---------------------|----------------------|
@@ -27,3 +27,32 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Select Exercises from a list of 800 exercises
 - Filter Exercises based on targeted muscle group
 - Search exercises (limited capability)
+
+
+## Built with 
+
+- **React**
+- **Redux**
+- **CSS Modules**
+- **Styled Components**
+- **Framer Motion**
+- **Firebase**
+- **react-hook-form**
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/ozansozuozgit/workout-creator.git
+
+# Go into the repository
+$ cd workout-creator
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
+```
