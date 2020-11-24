@@ -1,4 +1,5 @@
 .container {
   background-color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
 }
